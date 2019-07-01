@@ -13,7 +13,7 @@ public class Matrix {
 		this.array = array;
 	}
 	
-	//Creates an n-by-m of zeros
+	//Creates an n-by-m matrix of zeros
 	public Matrix(int n, int m) {
 		this.n = n;
 		this.m = m;
@@ -137,5 +137,16 @@ public class Matrix {
 		}
 	}
 	
+	public double norm() throws InvalidOperationException {
+		if (this.m == 1) {
+			double sum = 0;
+			for (int i = 0; i < this.n; i++) {
+				sum += Math.pow(array[i][1], 2);
+			}
+			return Math.sqrt(sum);
+		}else {
+			throw new InvalidOperationException();
+		}
+	}
 	
 }
