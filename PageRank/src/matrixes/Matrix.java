@@ -144,7 +144,7 @@ public class Matrix {
 	//Other useful functions
 	
 	//Takes the vector norm
-	public double module() throws InvalidOperationException {
+	public double norm() throws InvalidOperationException {
 		if (this.m == 1) {
 			double sum = 0;
 			for (int i = 0; i < this.n; i++) {
@@ -159,7 +159,14 @@ public class Matrix {
 	//Normalizes the vector
 	public void normalize() throws InvalidOperationException {
 		for (int i = 0; i < this.n; i++) {
-			array[i][1] /= this.module();
+			array[i][1] /= this.norm();
+		}
+	}
+	
+	//Multiply column by constant
+	public void column_by_constat(int column, double k) {
+		for(int j = 0; j < this.n; j++) {
+			this.array[j][column] *= k; 
 		}
 	}
 }
