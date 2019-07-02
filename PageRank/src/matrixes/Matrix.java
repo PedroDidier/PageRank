@@ -54,6 +54,8 @@ public class Matrix {
 	}
 
 	//Now we define a few matrixes operations
+	
+	//Sum
 	public Matrix plus(Matrix B) throws InvalidOperationException {
 		if(this.m == B.getColumnDimension() && this.n == B.getRowDimension()) {
 
@@ -74,6 +76,7 @@ public class Matrix {
 		}
 	}
 
+	//Subtraction
 	public Matrix minus(Matrix B) throws InvalidOperationException {
 		if(this.m == B.getColumnDimension() && this.n == B.getRowDimension()) {
 
@@ -94,7 +97,7 @@ public class Matrix {
 		}
 	}
 
-
+	//Multiplication by constant
 	public Matrix timesConstant(double k) {
 
 		double[][] arrayC = new double[this.n][this.m];
@@ -110,6 +113,7 @@ public class Matrix {
 		return C;
 	}
 
+	//Matrix multiplication
 	public Matrix timesMatrix(Matrix B) throws InvalidOperationException {
 
 		if(this.m == B.getRowDimension()) {
@@ -137,7 +141,10 @@ public class Matrix {
 		}
 	}
 	
-	public double norm() throws InvalidOperationException {
+	//Other useful functions
+	
+	//Takes the vector norm
+	public double module() throws InvalidOperationException {
 		if (this.m == 1) {
 			double sum = 0;
 			for (int i = 0; i < this.n; i++) {
@@ -149,4 +156,10 @@ public class Matrix {
 		}
 	}
 	
+	//Normalizes the vector
+	public void normalize() throws InvalidOperationException {
+		for (int i = 0; i < this.n; i++) {
+			array[i][1] /= this.module();
+		}
+	}
 }
