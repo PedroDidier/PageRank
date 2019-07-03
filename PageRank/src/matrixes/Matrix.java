@@ -36,7 +36,7 @@ public class Matrix {
 		this.array = arrayEqual;
 	}
 	
-
+	//Basic get and set commands
 	public int getRowDimension() {
 		return this.n;
 	}
