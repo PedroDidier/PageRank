@@ -120,7 +120,7 @@ public class Matrix {
 			double[][] arrayC = new double[this.n][B.getColumnDimension()];
 
 			for(int i = 0; i < this.n; i++) {
-				for(int j = 0; j< this.m; j++) {
+				for(int j = 0; j< B.getColumnDimension(); j++) {
 
 					double sumCk = 0;
 
@@ -132,7 +132,7 @@ public class Matrix {
 				}
 			}
 
-			Matrix C = new Matrix(this.n, this.m, arrayC);
+			Matrix C = new Matrix(this.n, B.getColumnDimension(), arrayC);
 
 			return C;
 
@@ -148,7 +148,7 @@ public class Matrix {
 		if (this.m == 1) {
 			double sum = 0;
 			for (int i = 0; i < this.n; i++) {
-				sum += Math.pow(array[i][1], 2);
+				sum += Math.pow(array[i][0], 2);
 			}
 			return Math.sqrt(sum);
 		}else {
@@ -159,7 +159,7 @@ public class Matrix {
 	//Normalizes the vector
 	public void normalize() throws InvalidOperationException {
 		for (int i = 0; i < this.n; i++) {
-			array[i][1] /= this.norm();
+			array[i][0] /= this.norm();
 		}
 	}
 	

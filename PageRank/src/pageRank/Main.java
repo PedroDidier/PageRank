@@ -5,16 +5,17 @@ import java.util.Scanner;
 public class Main {
 
 	public static void main(String[] args) {
+		long startTime = System.nanoTime();
 		Scanner in = new Scanner(System.in);
 		
 		double epslon = Math.pow(10, -4);
 		double dampingFactor = 0.85;
 		
-		//Adjacency matrix input
+		//Link matrix input
 		double array[][] = new double[5][5];
 		for(int i = 0; i < 5; i++) {
 			for(int j = 0; j < 5; j++) {
-				array[i][j] = in.nextDouble();
+				array[i][j] = 1;
 				//We will not consider loop links
 				if(i == j) {
 					array[i][j] = 0;
@@ -24,7 +25,7 @@ public class Main {
 		
 		Matrix A = new Matrix(5, 5, array);
 		
-		//We will "apply weights" to this matrix, based on pages outgoing links
+		//We will "apply weights" to the matrix, based on page's outgoing links
 		for(int j = 0; j < A.getColumnDimension(); j++) {
 			int sum = 0;
 			for(int i = 0; i < A.getRowDimension(); i++) {
@@ -33,7 +34,7 @@ public class Main {
 			A.column_by_constat(j, Math.pow(sum, -1));
 		}
 		
-		Matrix B = new Matrix(5, 5, 1/5);
+		Matrix B = new Matrix(5, 5, 0.2);
 		
 		Matrix C = new Matrix(5,5);
 		
@@ -43,7 +44,7 @@ public class Main {
 			System.out.println(e);;
 		}
 		
-		Matrix v = new Matrix(5,1,1/5);
+		Matrix v = new Matrix(5,1, 0.2);
 		
 		boolean stop = false;
 		
@@ -56,16 +57,18 @@ public class Main {
 				v.normalize();
 			
 				if((v.minus(previous)).norm() < epslon) {
-				stop = !stop;
+					stop = true;
 				}
 				
 			}catch (Exception e) {
 				System.out.println(e);;
 			}
 			
-			
 		}
 		
+		long endTime   = System.nanoTime();
+		long totalTime = endTime - startTime;
+		System.out.println(totalTime/100);
 		
 	}
 }
